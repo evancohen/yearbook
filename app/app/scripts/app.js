@@ -27,4 +27,10 @@ app.config(function(RestangularProvider) {
   RestangularProvider.setResponseExtractor(function(response, operation) {
     return response.data;
   });
+  RestangularProvider.setDefaultHttpFields({cache: true});
+
+  RestangularProvider.setDefaultHeaders({
+    "Content-Type": "application/json",
+    "X-Requested-With": "XMLHttpRequest"
+  });
 });
