@@ -22,8 +22,8 @@ var app = angular.module('yearbookApp', [
   });
 
 app.config(function(RestangularProvider) {
-  RestangularProvider.setBaseUrl('http://localhost:1337');
-  //RestangularProvider.setBaseUrl('http://yearbook.evanc.me/api');
+  //RestangularProvider.setBaseUrl('http://localhost:1337');
+  RestangularProvider.setBaseUrl('http://yearbook.evanc.me/api');
   RestangularProvider.setResponseExtractor(function(response, operation) {
     return response.data;
   });
