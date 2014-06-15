@@ -6,7 +6,9 @@ angular.module('yearbookApp')
   	$scope.posted = false;
 
   	apiService.getNotes().then(function (notes){
-  		$scope.notes = notes;
+  		//Aort the notes before we apply them to scope
+  		//Why sort on the client? Because sails .sort('id') doesn't work...
+  		$scope.notes =_.sortBy(notes, function(note) { return 0 - note.id; });
   	})
 
     $scope.submit = function(){

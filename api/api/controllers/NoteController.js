@@ -61,13 +61,19 @@ module.exports = {
 	},
 
 	delete : function (request, response){
+		if(!CANREAD){
+			return responseService.forbidden (response, "You don't have permission for that");
+		}
 		Note.findOne(request.param('id')).done(function(error, note) {
+			if (error || typeof note === "undefined"){
+				return responseService.error(response, error);
+			}
 			note.destroy(function(error) {
 				// record has been removed
 				if (error) {
 					return responseService.error(response, error);
 				} else {
-					return response.success(response, {deleted:true});
+					return responseService.success(response, {deleted:true});
 				}
 			});
 		});
